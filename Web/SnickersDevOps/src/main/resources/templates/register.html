@@ -10,8 +10,21 @@
     <link rel="stylesheet" href="/static/styles/registerPageStyle.css">
 </head>
 <body>
-    <main class=" d-flex justify-content-center" >
-        <form action="#" class = "registerForm">
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <a href="index.html" class="back"> < Back</a>
+                </div>
+                <div class="col createAccount">
+                    <a href="login.html" class = "createAccountLink">log in</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <main class="mainContainer d-flex justify-content-center">
+        <form action="#" method="POST" class = "loginForm">
             <div class="mb-3">
                 <label for="" class="form-label">Username</label>
                 <input type="text" class="form-control" id="" placeholder="Username">
@@ -28,19 +41,18 @@
                 <label for="" class="form-label">E-mail</label>
                 <input type="text" class="form-control" id="" placeholder="e-mail">
             </div>
+            <!--  TODO добавить кнопку глазика которая потом будет показывать пароль -->
             <div class="mb-3">
                 <label for="" class="form-label">Password</label>
-                <input type="text" class="form-control" id="" placeholder="Password">
+                <input type="password" class="form-control" id="" placeholder="Password">
             </div>
+            <!--  TODO сделать так чтобы пароли совпадали -->
             <div class="mb-3">
                 <label for="" class="form-label">Confirm Password</label>
-                <input type="text" class="form-control" id="" placeholder="Confirm Password">
+                <input type="password" class="form-control" id="" placeholder="Confirm Password">
             </div>
-            <button type="button" class="form-control btn btn-outline-danger">Register</button>
+            <button type="button" class="registerBtn form-control">REGISTER</button>
 
-            <div class="mb-3 text-center">
-                <p class="loginLink"><a href="login.html" class="loginLink">Already have account?</a></p>
-            </div>
         </form>
     </main>
 <!--  Include every Bootstrap JavaScript plugin and dependency  -->

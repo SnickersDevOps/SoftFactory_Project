@@ -13,13 +13,28 @@
     <header class="header">
         <div class="container-fluid">
             <div class="row">
-                <a href="index.html" class="col back"> < Back</a>
-                <a href="register.html" class = "col createAccount">create account</a>
+                <div class="col">
+                    <a href="index.html" class="back"> < Back</a>
+                </div>
+                <div class="col createAccount">
+                        <a href="register.html" class = "createAccountLink">create account</a>
+                </div>
+
             </div>
         </div>
     </header>
+    <h3>Login to UNT helper</h3>
     <main class="mainContainer d-flex justify-content-center">
         <form action="#" method="POST" class = "loginForm">
+            <!--  TODO добавить проверку и вывод соотвествующий
+                    1) юзера (правильный или нет)
+                    2) пароля (правильный или нет)
+                    3) не правильный формат почты
+                    4) не все поля заполнены
+
+                  TODO как вариант можно просто disable кнопку by default
+                        после того как заполнил все поля тогда она active
+            -->
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label ">Username</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="name@example.com">
@@ -31,7 +46,6 @@
             <button type="button" class="LogIn form-control">Log in</button>
 
         </form>
-
     </main>
 
     <!--  Include every Bootstrap JavaScript plugin and dependency  -->

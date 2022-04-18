@@ -17,8 +17,35 @@ body {
 
 .createAccount {
     text-align: right;
+}
+
+.createAccountLink {
     text-decoration: none;
     color: #303952;
+    display: inline-block;
+    position: relative;
+}
+
+.createAccountLink:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.createAccountLink:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+h3 {
+    text-align: center;
+    font-weight: bold;
 }
 
 main {
@@ -30,7 +57,7 @@ main {
     transform: translate(-50%, -50%);;
     width: 27%;
     height: 55%;
-    font-weight: bold;  
+    font-weight: bold;
 
 }
 .form-control {
@@ -51,7 +78,4 @@ input[type=text]:focus{
 
 .LogIn {
     background-color: #d9eef8;
-}
-.login[type=text]:focus{
-    background-color: #8d520b;
 }
