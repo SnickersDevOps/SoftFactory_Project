@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">xxx</string>
+    <string name="statistics">Statistics</string>
+    <string name="courses">Courses</string>
+    <string name="profile">Profile</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="have_an_account">Have an account?</string>
+    <string name="or_connect_with">OR CONNECT WITH</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="choose_a_course">Choose a course</string>
+    <string name="fname_lname">FName LName</string>
+</resources>
