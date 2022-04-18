@@ -1,23 +1,55 @@
-
-body {
-    background-color: #778beb;
+* {
+    font-family: "Courier New";
 }
+body {
+    background-color: rgb(240, 250, 240) ;
+}
+
+.header {
+    margin: 50px;
+    text-transform: uppercase;
+}
+
+.back {
+    text-decoration: none;
+    color: #303952;
+}
+
+.createAccount {
+    text-align: right;
+    text-decoration: none;
+    color: #303952;
+}
+
 main {
-    background-color: whitesmoke;
+    color: #5b6575;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);;
     width: 27%;
     height: 55%;
-    border-radius: 5pt;
-    border: 1px solid #3670dc;
 }
-.loginForm {
-    margin-top: 10%;
+.form-control {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid #9eb1c2;
 }
+
+input[type=text]:focus{
+    background-color: #ffffff;
+}
+
 .registerLink {
     color: #565656;
     margin-top: 10%;
+}
+
+.LogIn {
+    background-color: #d9eef8;
+}
+.login[type=text]:focus{
+    background-color: #8d520b;
 }
