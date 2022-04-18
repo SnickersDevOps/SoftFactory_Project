@@ -30,6 +30,8 @@ main {
     transform: translate(-50%, -50%);;
     width: 27%;
     height: 55%;
+    font-weight: bold;  
+
 }
 .form-control {
     border: 0;
