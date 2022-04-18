@@ -10,4 +10,12 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="choose_a_course">Choose a course</string>
     <string name="fname_lname">FName LName</string>
+    <string name="change_image">Change Image</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="about_developers">About Developers</string>
+    <string name="accept">Accept</string>
+    <string name="team_name_snickersdevops">Team Name : SnickersDevOps</string>
+    <string name="team_members">Team members :</string>
+    <string name="team_members_list">Adilet Kaskarauov, Temirlan Akishev, Maksat Maratov, Timur Doirashev</string>
+    <string name="link_to_the_project_code">Link to the project code :</string>
 </resources>

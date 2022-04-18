@@ -3,7 +3,7 @@
              xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_app"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/profileFragment">
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="dts.apps.unt_front.fg.WelcomeFragment"
@@ -50,6 +50,36 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_coursesFragment"
+            app:destination="@id/coursesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_aboutDevelopersFragment"
+            app:destination="@id/aboutDevelopersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="dts.apps.unt_front.fg.EditProfileFragment"
+        android:label="fragment_editprofile"
+        tools:layout="@layout/fragment_editprofile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_coursesFragment"
+            app:destination="@id/coursesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutDevelopersFragment"
+        android:name="dts.apps.unt_front.fg.AboutDevelopersFragment"
+        android:label="fragment_about_developers"
+        tools:layout="@layout/fragment_about_developers" >
+        <action
+            android:id="@+id/action_aboutDevelopersFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_aboutDevelopersFragment_to_coursesFragment"
             app:destination="@id/coursesFragment" />
     </fragment>
 </navigation>

@@ -15,6 +15,13 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding_internal = FragmentProfileBinding.inflate(inflater , container , false)
 
+        binding_internal.btnEditProfile.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_profileFragment_to_editProfileFragment)
+        }
+        binding_internal.btnAboutDevelopers.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_profileFragment_to_aboutDevelopersFragment)
+        }
+
         binding_internal.bottomNavbar.setOnNavigationItemSelectedListener{
             when(it.itemId) {
                 R.id.itemCourses -> view?.findNavController()?.navigate(R.id.action_profileFragment_to_coursesFragment)
