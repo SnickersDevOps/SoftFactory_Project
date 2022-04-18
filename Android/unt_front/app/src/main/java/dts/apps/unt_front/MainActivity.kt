@@ -12,14 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val currentFragment = NavHostFragment.findNavController(navHost.getFragment()).currentDestination?.id
-
-        if (currentFragment == R.id.coursesFragment) {
-            bottom_nav_bar.visibility = View.VISIBLE
-        }
-        else if (currentFragment == R.id.welcomeFragment) {
-            bottom_nav_bar.visibility = View.GONE
-        }
     }
 
 
