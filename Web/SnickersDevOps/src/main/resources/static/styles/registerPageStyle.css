@@ -1,0 +1,77 @@
+* {
+    font-family: "Courier New";
+}
+body {
+    background-color: rgb(240, 250, 240);
+    display: block;
+}
+
+.header {
+    margin: 50px;
+    text-transform: uppercase;
+}
+
+.back {
+    text-decoration: none;
+    color: #303952;
+}
+
+.createAccount {
+    text-align: right;
+}
+
+.createAccountLink {
+    text-decoration: none;
+    color: #303952;
+    display: inline-block;
+    position: relative;
+}
+
+.createAccountLink:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.createAccountLink:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+main {
+    color: #5b6575;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);;
+    width: 27%;
+    height: 55%;
+    font-weight: bold;
+
+}
+.form-control {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid #9eb1c2;
+}
+
+input[type=text]:focus{
+    background-color: #ffffff;
+}
+
+.registerLink {
+    color: #565656;
+    margin-top: 10%;
+}
+
+.registerBtn {
+    background-color: #d9eef8;
+}
