@@ -71,4 +71,9 @@ main {
 
 .card {
     max-width: 200px;
+    border-radius: 15px;
+}
+
+.card > a img{
+    border-radius: 15px;
 }
