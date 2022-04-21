@@ -7,28 +7,29 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import dts.apps.unt_front.R
+import dts.apps.unt_front.databinding.FragmentCoursesBinding
 import dts.apps.unt_front.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
-    lateinit var binding_internal : FragmentProfileBinding
-    val binding_external get() = binding_internal
+    private var binding_1 : FragmentProfileBinding? = null
+    private val binding_2 get() = binding_1!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding_internal = FragmentProfileBinding.inflate(inflater , container , false)
+        binding_1 = FragmentProfileBinding.inflate(inflater , container , false)
 
-        binding_internal.btnEditProfile.setOnClickListener {
+        binding_2.btnEditProfile.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
-        binding_internal.btnAboutDevelopers.setOnClickListener {
+        binding_2.btnAboutDevelopers.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_profileFragment_to_aboutDevelopersFragment)
         }
 
-        binding_internal.bottomNavbar.setOnNavigationItemSelectedListener{
+        binding_2.bottomNavbar.setOnNavigationItemSelectedListener{
             when(it.itemId) {
                 R.id.itemCourses -> view?.findNavController()?.navigate(R.id.action_profileFragment_to_coursesFragment)
             }
             true
         }
 
-        return binding_internal.root
+        return binding_2.root
     }
 }

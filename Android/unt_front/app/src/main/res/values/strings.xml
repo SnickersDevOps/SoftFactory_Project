@@ -18,4 +18,6 @@
     <string name="team_members">Team members :</string>
     <string name="team_members_list">Adilet Kaskarauov, Temirlan Akishev, Maksat Maratov, Timur Doirashev</string>
     <string name="link_to_the_project_code">Link to the project code :</string>
+    <string name="exam_tickets">Exam tickets</string>
+    <string name="about_course">About Course</string>
 </resources>

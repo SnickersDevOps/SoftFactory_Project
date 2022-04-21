@@ -8,15 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import dts.apps.unt_front.R
 import dts.apps.unt_front.databinding.FragmentAboutDevelopersBinding
+import dts.apps.unt_front.databinding.FragmentCoursesBinding
 
 
 class AboutDevelopersFragment : Fragment() {
-    lateinit var binding_internal : FragmentAboutDevelopersBinding
-    val binding_external get() = binding_internal
+    private var binding_1 : FragmentAboutDevelopersBinding? = null
+    private val binding_2 get() = binding_1!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding_internal = FragmentAboutDevelopersBinding.inflate(inflater , container , false)
+        binding_1 = FragmentAboutDevelopersBinding.inflate(inflater , container , false)
 
-        binding_internal.bottomNavbar.setOnNavigationItemSelectedListener{
+        binding_2.bottomNavbar.setOnNavigationItemSelectedListener{
             when(it.itemId) {
                 R.id.itemProfile -> view?.findNavController()?.navigate(R.id.action_aboutDevelopersFragment_to_profileFragment)
                 R.id.itemCourses -> view?.findNavController()?.navigate(R.id.action_aboutDevelopersFragment_to_coursesFragment)
@@ -24,6 +25,6 @@ class AboutDevelopersFragment : Fragment() {
             true
         }
 
-        return binding_internal.root
+        return binding_2.root
     }
 }
