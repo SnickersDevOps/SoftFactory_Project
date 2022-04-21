@@ -2,9 +2,10 @@
 body {
     margin: 0;
     padding: 0;
-    /*background-image: ("/static/images/background.jpg");*/
-    background-color: aliceblue;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
+
 nav {
     position: fixed;
     top: 0;
@@ -38,10 +39,19 @@ nav {
 }
 
 nav.sticky {
-    background-color: #9cc8de;
+    background-color: #C850C0;
     opacity: 90%;
 }
 
 nav.sticky ul li a {
-    color: #c73b0d;
+    color: #ffffff;
+}
+
+main {
+    display: grid;
+    justify-content: center;
+}
+
+.card {
+    max-width: 200px;
 }
