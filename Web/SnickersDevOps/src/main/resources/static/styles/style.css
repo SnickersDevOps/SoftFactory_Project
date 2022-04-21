@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #4158D0;
     background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    font-family: "Courier New";
 }
 
 nav {
@@ -17,7 +18,7 @@ nav {
     transition: 0.7s;
     z-index: 100000;
     color: #5b6575;
-    font-size: 14pt;
+    font-size: 16pt;
 }
 
 .nav-link {
@@ -36,6 +37,17 @@ nav {
     align-items: center;
     justify-items: center;
     display: flex;
+    font-size: 20pt;
+    font-weight: bold;
+}
+.carousel-caption > p, h3 {
+    color: #350064;
+}
+.carousel-item > img{
+    object-fit: cover;
+    vertical-align: middle;
+    border-style: none;
+    height: 100vh;
 }
 
 nav.sticky {
@@ -45,6 +57,11 @@ nav.sticky {
 
 nav.sticky ul li a {
     color: #ffffff;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 46pt;
 }
 
 main {
