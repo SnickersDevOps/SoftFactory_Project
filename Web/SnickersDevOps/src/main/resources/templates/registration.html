@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -24,32 +24,32 @@
         </div>
     </header>
     <main class="mainContainer d-flex justify-content-center">
-        <form action="#" method="POST" class = "loginForm">
+        <form th:action="@{/registration}" th:object="${user}" method="post" class = "loginForm">
             <div class="mb-3">
-                <label for="" class="form-label">Username</label>
-                <input type="text" class="form-control" id="" placeholder="Username">
+                <label for="username" class="form-label">E-mail</label>
+                <input th:field="*{email}" type="text" class="form-control" id="username" placeholder="Username">
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="" placeholder="First Name">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First Name">
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">Second Name</label>
-                <input type="text" class="form-control" id="" placeholder="Second Name">
-            </div>
-            <div class="mb-3">
-                <label for="" class="form-label">E-mail</label>
-                <input type="text" class="form-control" id="" placeholder="e-mail">
+                <label for="secondName" class="form-label">Second Name</label>
+                <input type="text" th:field="*{lastName}" class="form-control" id="secondName" placeholder="Second Name">
             </div>
             <!--  TODO добавить кнопку глазика которая потом будет показывать пароль -->
             <div class="mb-3">
-                <label for="" class="form-label">Password</label>
-                <input type="password" class="form-control" id="" placeholder="Password">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Password">
             </div>
             <!--  TODO сделать так чтобы пароли совпадали -->
-            <div class="mb-3">
-                <label for="" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="" placeholder="Confirm Password">
+            <div class="mb-3"
+                 th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''" >
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input th:field="*{confirmPassword}"  type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                <p class="error-message"
+                   th:each="error : ${#fields.errors('confirmPassword')}"
+                   th:text="${error}">Validation error</p>
             </div>
             <button type="button" class="registerBtn form-control">REGISTER</button>
 

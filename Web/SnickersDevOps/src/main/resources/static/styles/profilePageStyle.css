@@ -1,0 +1,33 @@
+
+body {
+    font-family: "Courier New";
+    background-color: rgb(217, 227, 217);
+}
+
+main {
+    padding: 5%;
+    background-color: rgba(217, 212, 212, 0.5);
+    border-radius: 10px;
+}
+
+.profileImg {
+    width: 200px;
+    border: 1px solid #303952;
+    border-radius: 15px;
+}
+.editProfile {
+    text-align: right;
+}
+tr {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+h3 {
+    text-align: center;
+}
+
+.statsBlock {
+    background-color: rgba(217, 212, 212, 0.5);
+    border-radius: 10px;
+}
