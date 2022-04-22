@@ -14,10 +14,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <a href="index.html" class="back"> < Back</a>
+                    <a href="index" class="back"> < Back</a>
                 </div>
                 <div class="col createAccount">
-                        <a href="registration.html" class = "createAccountLink">create account</a>
+                        <a href="registration" class = "createAccountLink">create account</a>
                 </div>
 
             </div>
@@ -25,34 +25,22 @@
     </header>
     <h3>Login to UNT helper</h3>
     <main class="mainContainer d-flex justify-content-center">
-        <form th:action="@{/login}" method="post" class = "loginForm">
-            <div th:if="${param.error}">
-                <div class="alert alert-danger">Invalid username or
-                    password.</div>
-            </div>
-
-            <div th:if="${param.logout}">
-                <div class="alert alert-info">You have been logged out.</div>
-            </div>
-            <!--  TODO добавить проверку и вывод соотвествующий
-                    1) юзера (правильный или нет)
-                    2) пароля (правильный или нет)
-                    3) не правильный формат почты
-                    4) не все поля заполнены
-
-                  TODO как вариант можно просто disable кнопку by default
-                        после того как заполнил все поля тогда она active
-            -->
+        <form method="post" th:action="@{/login}" class = "loginForm">
             <div class="mb-3">
-                <label for="Email" class="form-label ">Email</label>
-                <input type="text" class="form-control" id="Email" placeholder="Email" name="email">
+                <label class="form-label ">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password">
             </div>
-            <input type="submit" name="login-submit" id="login-submit" value="Log In" class="LogIn form-control"/>
-
+            <input style="color: black" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <button style="color: black" class="LogIn form-control" type="submit">LOGIN</button>
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Invalid username or password.
+                </div>
+            </div>
         </form>
     </main>
 
