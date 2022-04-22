@@ -31,12 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         String[] staticResources  =  {
                 "/resources/**",
                 "/static/**",
-                "/styles/**",
+                "/styles/*",
                 "/images/**",
                 "/js/**",
-                "/vendor/**",
-                "/scss/**",
-                "/fonts/**",
                 "/parts/**",
                 "/login/**",
                 "/registration/**"
