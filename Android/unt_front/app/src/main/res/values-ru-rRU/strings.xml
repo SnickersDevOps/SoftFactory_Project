@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ЕНТ Помощник</string>
+    <string name="statistics">Статистика</string>
+    <string name="courses">Предметы</string>
+    <string name="profile">Профиль</string>
+    <string name="have_an_account">Уже есть учетная запись?</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="choose_a_course">Выберите предмет</string>
+    <string name="fname_lname">Имя Фамилия</string>
+    <string name="change_image">Изменить фотографию</string>
+    <string name="edit_profile">Редактировать профиль</string>
+    <string name="about_developers">О разработчиках</string>
+    <string name="accept">Принять</string>
+    <string name="exam_tickets">Варианты</string>
+    <string name="about_course">Про предмет</string>
+    <string name="random_exam_ticket">Рандомный вариант</string>
+</resources>

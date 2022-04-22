@@ -16,7 +16,11 @@ class EditProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding_1 = FragmentEditprofileBinding.inflate(inflater , container , false)
+        onItemClicked()
+        return binding_2.root
+    }
 
+    private fun onItemClicked() {
         binding_2.bottomNavbar.setOnNavigationItemSelectedListener{
             when(it.itemId) {
                 R.id.itemProfile -> view?.findNavController()?.navigate(R.id.action_editProfileFragment_to_profileFragment)
@@ -24,7 +28,5 @@ class EditProfileFragment : Fragment() {
             }
             true
         }
-
-        return binding_2.root
     }
 }

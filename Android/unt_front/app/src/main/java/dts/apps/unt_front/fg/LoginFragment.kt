@@ -19,7 +19,14 @@ class LoginFragment : Fragment() {
     private val binding_2 get() = binding_1!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding_1 = FragmentLoginBinding.inflate(inflater , container , false)
+        emailEditTxtChecker()
+        return binding_2.root
+    }
+    private fun CharSequence?.isValidEmail():Boolean{
+        return !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    }
 
+    private fun emailEditTxtChecker() {
         binding_2.editTextEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -40,11 +47,6 @@ class LoginFragment : Fragment() {
 
             }
         })
-
-        return binding_2.root
-    }
-    fun CharSequence?.isValidEmail():Boolean{
-        return !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
     }
 
 }

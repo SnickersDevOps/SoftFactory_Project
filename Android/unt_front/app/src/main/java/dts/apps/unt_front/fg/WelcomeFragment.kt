@@ -15,15 +15,17 @@ class WelcomeFragment : Fragment() {
     private val binding_2 get() = binding_1!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding_1 = FragmentWelcomeBinding.inflate(inflater , container , false)
+        onButtonClicked()
+        return binding_2.root
 
+    }
+
+    private fun onButtonClicked() {
         binding_2.btnLogIn.setOnClickListener{
             view?.findNavController()?.navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
         binding_2.btnSignUp.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_welcomeFragment_to_signupFragment)
         }
-
-        return binding_2.root
-
     }
 }
