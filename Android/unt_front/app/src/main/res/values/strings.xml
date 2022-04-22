@@ -21,4 +21,6 @@
     <string name="exam_tickets">Exam tickets</string>
     <string name="about_course">About Course</string>
     <string name="random_exam_ticket">Random exam ticket</string>
+    <string name="all_available_tickets">All available tickets</string>
+    <string name="back">Back</string>
 </resources>

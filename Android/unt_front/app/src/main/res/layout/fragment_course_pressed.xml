@@ -35,30 +35,12 @@
         app:layout_constraintTop_toBottomOf="@+id/img_course" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_about_course"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="95dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/btn_color_3"
-        android:drawableRight="@drawable/ic_right"
-        android:text="@string/about_course"
-        android:textAlignment="textStart"
-        android:textSize="23sp"
-        app:cornerRadius="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_course_name" />
-
-    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_exam_tickets"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="110dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/btn_color_3"
         android:drawableRight="@drawable/ic_right"
@@ -68,7 +50,7 @@
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_about_course" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_course_name" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_random_tickets"

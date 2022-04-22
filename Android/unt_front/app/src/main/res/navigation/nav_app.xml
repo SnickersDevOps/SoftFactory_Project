@@ -3,7 +3,7 @@
              xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_app"
-    app:startDestination="@id/coursesFragment">
+    app:startDestination="@id/welcomeFragment">
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="dts.apps.unt_front.fg.WelcomeFragment"
@@ -98,4 +98,13 @@
             android:id="@+id/action_coursePressedFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/testingProcessFragment"
+        android:name="dts.apps.unt_front.fg.TestingProcessFragment"
+        android:label="TestingProcessFragment" />
+    <fragment
+        android:id="@+id/examTicketsFragment"
+        android:name="dts.apps.unt_front.fg.ExamTicketsFragment"
+        android:label="fragment_testing_proccess"
+        tools:layout="@layout/fragment_testing_proccess" />
 </navigation>
