@@ -1,0 +1,42 @@
+
+body {
+    font-family: "Courier New";
+    background-color: rgb(217, 227, 217);
+    display: grid;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 15px;
+}
+.card > a img{
+    border-radius: 15px;
+}
+
+div.container {
+    background-color: rgba(171, 171, 171, 0.5);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 15px;
+}
+
+main > div.container{
+    display: grid;
+    justify-content: center;
+    background-color: rgba(171, 171, 171, 0.5);
+
+}
+
+div.col > a.btn {
+    margin: 15px;
+    border-radius: 10pt;
+}
+
+h3 {
+    font-weight: bold;
+}

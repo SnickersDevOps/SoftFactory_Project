@@ -2,6 +2,8 @@
 body {
     font-family: "Courier New";
     background-color: rgb(217, 227, 217);
+    display: grid;
+    justify-content: center;
 }
 
 main {
