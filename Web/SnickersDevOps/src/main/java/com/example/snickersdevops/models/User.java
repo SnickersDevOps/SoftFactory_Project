@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "users")
 public class User {
 
     @Id
@@ -27,6 +27,7 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "email",unique=true)
     private String email;
 
     private String password;
