@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -42,6 +42,8 @@
                 </div>
             </div>
         </form>
+
+        <a th:href="/@{/oauth2/authorization/google}">Login with Google</a>
     </main>
 
     <!--  Include every Bootstrap JavaScript plugin and dependency  -->
