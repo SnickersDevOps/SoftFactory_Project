@@ -44,9 +44,4 @@ public class User {
     )
     private List<Role> roles;
 
-    @Enumerated(EnumType.STRING)
-    private Provider provider;
-
-
-
 }

@@ -1,7 +1,6 @@
 package com.example.snickersdevops.config;
 
-import com.example.snickersdevops.models.CustomOAuth2User;
-import com.example.snickersdevops.services.CustomOAuth2UserService;
+
 import com.example.snickersdevops.services.UserService;
 import com.example.snickersdevops.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.servlet.ServletException;
@@ -29,8 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordConfig passwordConfig;
     private final UserServiceImpl userServiceImpl;
 
-    @Autowired
-    private CustomOAuth2UserService oauthUserService;
 
     @Autowired
     public SecurityConfig(UserService userService, PasswordConfig passwordConfig, UserServiceImpl userServiceImpl) {
@@ -55,6 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(staticResources).permitAll()
+                .antMatchers("/index/**").hasAnyRole("USER", "ADMIN")
+
                 .antMatchers("/index/**").permitAll()
                 .antMatchers("/oauth/**").permitAll()
                 .and()
@@ -63,47 +63,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .defaultSuccessUrl("/")
                         .failureUrl("/login?error=true")
                 )
-                .oauth2Login()
-                .loginPage("/login")
-                .userInfoEndpoint()
-                .userService(oauthUserService);
-
-        http.oauth2Login()
-                .loginPage("/login")
-                .userInfoEndpoint()
-                .userService(oauthUserService)
-                .and()
-                .successHandler(new AuthenticationSuccessHandler() {
-
-                    @Override
-                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                        Authentication authentication) throws IOException, ServletException {
-
-                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-
-                        userServiceImpl.processOAuthPostLogin(oauthUser.getEmail());
-
-                        response.sendRedirect("/list");
-                    }
-                });
-    }
-
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring()
-                .antMatchers("/resources/**", "/static/**");
-    }
-
-    @Bean
-    public DaoAuthenticationProvider authProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userService);
-        authProvider.setPasswordEncoder(passwordConfig.passwordEncoder());
-        return authProvider;
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(authProvider());
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
+                .permitAll();
     }
 }

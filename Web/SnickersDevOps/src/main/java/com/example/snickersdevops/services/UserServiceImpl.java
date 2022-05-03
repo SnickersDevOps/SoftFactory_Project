@@ -1,11 +1,9 @@
 package com.example.snickersdevops.services;
 
 import com.example.snickersdevops.dto.UserRegistrationDto;
-import com.example.snickersdevops.models.Provider;
 import com.example.snickersdevops.models.Role;
 import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -55,17 +53,4 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
-    @Autowired
-    private UserRepository repo;
-
-    public void processOAuthPostLogin(String email) {
-        User existUser = repo.getUserByEmail(email);
-
-        if (existUser == null) {
-            User newUser = new User();
-            newUser.setEmail(email);
-            newUser.setProvider(Provider.GOOGLE);
-            repo.save(newUser);
-        }
-    }
 }
