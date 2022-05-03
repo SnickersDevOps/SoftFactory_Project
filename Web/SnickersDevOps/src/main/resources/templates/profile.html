@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -19,20 +19,16 @@
                     <tbody>
                     <tr>
                         <th class = "w-50">Username:</th>
-                        <td>Mark</td>
+                        <td><span sec:authentication="principal.email">User</span></td>
                     </tr>
                     <tr>
                         <th scope="row">First name:</th>
-                        <td>Jacob</td>
+                        <td><span sec:authentication="principal.first_name">Jacob</span></td>
                     </tr>
                     <tr>
                         <th scope="row">Second name:</th>
-                        <td>Jacob</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">E-mail:</th>
-                        <td>example@not.com</td>
-                    </tr>
+                        <td><span sec:authentication="principal.last_name">Jacob</span></td>
+                    </tr>к
                     <tr>
                         <th scope="row">Direction of education:</th>
                         <td>(физика математеика и тд)</td>
