@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -18,20 +18,16 @@
                 <table class="col">
                     <tbody>
                     <tr>
-                        <th class = "w-50">Username:</th>
-                        <td><span sec:authentication="principal.email">User</span></td>
+                        <th class = "w-50">Email:</th>
+                        <td th:text = "${user.getEmail}">VALUE</td>
                     </tr>
                     <tr>
                         <th scope="row">First name:</th>
-                        <td><span sec:authentication="principal.first_name">Jacob</span></td>
+                        <td th:text = "${user.getFirstName()}">VALUE</td>
                     </tr>
                     <tr>
                         <th scope="row">Second name:</th>
-                        <td><span sec:authentication="principal.last_name">Jacob</span></td>
-                    </tr>к
-                    <tr>
-                        <th scope="row">Direction of education:</th>
-                        <td>(физика математеика и тд)</td>
+                        <td th:text = "${user.getLastName()}">VALUE</td>
                     </tr>
 
                     </tbody>

@@ -1,10 +1,24 @@
 package com.example.snickersdevops.controllers;
 
+import com.example.snickersdevops.models.User;
+import com.example.snickersdevops.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class IndexController {
+
+    private final UserRepository userRepository;
+
+    @Autowired
+    public IndexController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/biology")
     public String BiologyCourse(){
@@ -45,4 +59,15 @@ public class IndexController {
     public String qazaqstanTarihCourse(){
         return "qazaqstan_tarih";
     }
+
+    @GetMapping("/profile")
+    public String profilePage(){
+        return "profile";
+    }
+
+    @GetMapping("/test")
+    public String testPage(){
+        return "test";
+    }
+
 }
