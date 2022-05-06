@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -19,15 +20,15 @@
                     <tbody>
                     <tr>
                         <th class = "w-50">Email:</th>
-                        <td th:text = "${user.getEmail}">VALUE</td>
+                        <td><span sec:authentication="principal.email">Email</span></td>
                     </tr>
                     <tr>
                         <th scope="row">First name:</th>
-                        <td th:text = "${user.getFirstName()}">VALUE</td>
+                        <td><span sec:authentication="principal.firstName">Firstname</span></td>
                     </tr>
                     <tr>
                         <th scope="row">Second name:</th>
-                        <td th:text = "${user.getLastName()}">VALUE</td>
+                        <td><span sec:authentication="principal.lastName">LastName</span></td>
                     </tr>
 
                     </tbody>
