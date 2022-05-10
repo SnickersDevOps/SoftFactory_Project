@@ -7,7 +7,7 @@
 <div layout:fragment="content">
     <div class="row">
         <div class="col-12">
-            <th:block th:replace="@{/fragments/dataTable}  :: dataTable(titles=${ {'ID', 'Name', 'Beschreibung'}},
+            <th:block th:replace = "/parts/dataTable :: dataTable(titles=${ {'ID', 'Name', 'Beschreibung'}},
                                                                             values=${ {'id', 'name', 'description'}},
                                                                             items=${quizzes},
                                                                             isEdit = ${true},
