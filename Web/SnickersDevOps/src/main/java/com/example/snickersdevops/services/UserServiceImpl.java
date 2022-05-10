@@ -4,6 +4,8 @@ import com.example.snickersdevops.dto.UserRegistrationDto;
 import com.example.snickersdevops.models.Role;
 import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +37,12 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public Page<User> findAllBySearch(String searchTerm, Pageable pageable) {
+        //TODO impement this method
+        return null;
     }
 
     @Override

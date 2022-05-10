@@ -1,13 +1,15 @@
 package com.example.snickersdevops.controllers;
 
-import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.example.snickersdevops.services.UserService;
+import com.example.snickersdevops.services.UserServiceImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -15,10 +17,13 @@ public class IndexController {
 
     private final UserRepository userRepository;
 
-    @Autowired
-    public IndexController(UserRepository userRepository) {
+    private final UserService userService;
+
+    public IndexController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
+
 
     @GetMapping("/biology")
     public String BiologyCourse(){
@@ -68,6 +73,36 @@ public class IndexController {
     @GetMapping("/test")
     public String testPage(){
         return "test";
+    }
+
+//    @GetMapping("/admin")
+//    public String adminPage(){
+//        return "admin";
+//    }
+
+    @GetMapping(value = "/quizList")
+    @PreAuthorize("permitAll")
+    public String getQuizList(@RequestParam(value = "name", required = false) String name, Model model,
+                              @PageableDefault(page = 0, size = 10) @SortDefault.SortDefaults({
+                                      @SortDefault(sort = "name", direction = Sort.Direction.DESC),
+                                      @SortDefault(sort = "description", direction = Sort.Direction.ASC) }) Pageable pageable) {
+
+        // Page<Quiz> quizzes = quizService.search(name, pageable);
+
+//        Page<Quiz> quizzes = quizService.findAll(pageable); // TODO
+
+//        model.addAttribute("quizzes", quizzes);
+        return "parts/quizList";
+    }
+
+    @GetMapping(value = "/userList")
+    @PreAuthorize("permitAll")
+    public String getUserList(@RequestParam(value = "search", required = false) String search, Model model,
+                              @PageableDefault(page = 0, size = 10) @SortDefault.SortDefaults({
+                                      @SortDefault(sort = "username", direction = Sort.Direction.DESC),
+                                      @SortDefault(sort = "email", direction = Sort.Direction.ASC) }) Pageable pageable) {
+        model.addAttribute("users", userService.findAllBySearch(search, pageable));
+        return "parts/userList";
     }
 
 }
