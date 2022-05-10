@@ -75,6 +75,16 @@ public class IndexController {
         return "test";
     }
 
+    @GetMapping("/500")
+    public String serverErrorPage(){
+        return "errors/500";
+    }
+
+    @GetMapping("/404")
+    public String notFoundPage(){
+        return "errors/404";
+    }
+
 //    @GetMapping("/admin")
 //    public String adminPage(){
 //        return "admin";

@@ -1,13 +1,13 @@
 <th:block th:fragment="menu" xmlns:sec="http://www.w3.org/1999/xhtml">
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="/" class="brand-link">
-            <img src="/images/Logo.png" alt="UNT helper logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="/images/Logo.png" alt="UNT helper logo" class="brand-image img-circle elevation-3" style="opacity: .8" width="120px">
             <span class="brand-text font-weight-light">UBT Helper</span>
         </a>
         <div class="sidebar">
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block"><span sec:authentication="principal.username">admin</span></a>
+                    <span sec:authentication="principal.username">admin name should be here</span>
                 </div>
             </div>
             <nav class="mt-2">
