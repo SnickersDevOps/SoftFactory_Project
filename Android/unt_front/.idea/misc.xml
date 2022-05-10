@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_about_developers.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_course_pressed.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_courses.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_editprofile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_exam_tickets.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_singup.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_testing_proccess.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/fragment_welcome.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TIMING/Documents/GitHub/SoftFactory_Project/Android/unt_front/app/src/main/res/layout/haha.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/mrtim/Android_Projects/xxx/app/src/main/res/drawable/course_demo.xml" value="0.294" />
         <entry key="..\:/Users/mrtim/Android_Projects/xxx/app/src/main/res/drawable/ic_edit.xml" value="0.294" />
         <entry key="..\:/Users/mrtim/Android_Projects/xxx/app/src/main/res/drawable/ic_profile.xml" value="0.353" />
