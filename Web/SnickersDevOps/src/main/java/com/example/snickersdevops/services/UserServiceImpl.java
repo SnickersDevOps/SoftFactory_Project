@@ -1,9 +1,12 @@
 package com.example.snickersdevops.services;
 
 import com.example.snickersdevops.dto.UserRegistrationDto;
+import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
 import com.example.snickersdevops.models.Role;
 import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,15 +15,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -43,6 +49,21 @@ public class UserServiceImpl implements UserService {
     public Page<User> findAllBySearch(String searchTerm, Pageable pageable) {
         //TODO impement this method
         return null;
+    }
+
+    @Override
+    public User find(Long id) throws ResourceUnavailableException {
+        if (id == null)
+            return null;
+        User user = userRepository.findById(id)
+                .orElseGet(null);
+
+        if (user == null) {
+            logger.error("The user " + id + " can't be found");
+            throw new ResourceUnavailableException("User " + id + " not found.");
+        }
+
+        return user;
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.example.snickersdevops.controllers;
 
 import com.example.snickersdevops.repository.UserRepository;
 import com.example.snickersdevops.services.UserService;
-import com.example.snickersdevops.services.UserServiceImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;

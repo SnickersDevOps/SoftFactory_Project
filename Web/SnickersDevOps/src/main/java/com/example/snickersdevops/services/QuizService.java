@@ -1,66 +1,34 @@
 package com.example.snickersdevops.services;
 
-import com.example.snickersdevops.models.Question;
-import com.example.snickersdevops.models.QuestionForm;
-import com.example.snickersdevops.models.Result;
-import com.example.snickersdevops.repository.QuestionRepo;
-import com.example.snickersdevops.repository.ResultRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
+import com.example.snickersdevops.exсeptions.UnauthorizedActionException;
+import com.example.snickersdevops.models.*;
+import com.example.snickersdevops.models.support.Response;
+import com.example.snickersdevops.models.support.Result;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-@Service
-public class QuizService {
 
-    @Autowired
-    Question question;
+public interface QuizService {
+    Quiz save(Quiz quiz, User user);
 
-    @Autowired
-    QuestionForm qForm;
+    Page<Quiz> findAll(Pageable pageable);
 
-    @Autowired
-    QuestionRepo qRepo;
+    Page<Quiz> findAllPublished(Pageable pageable);
 
-    @Autowired
-    Result result;
+    Page<Quiz> findQuizzesByUser(User user, Pageable pageable);
 
-    @Autowired
-    ResultRepo resultRepo;
+    Quiz find(Long id) throws ResourceUnavailableException;
 
-    public QuestionForm getQuestions() {
-        List<Question> allQues = qRepo.findAll();
-        List<Question> qList = new ArrayList<Question>();
+    Quiz update(Quiz quiz) throws ResourceUnavailableException, UnauthorizedActionException;
 
-        Random random = new Random();
+    void delete(Quiz quiz) throws ResourceUnavailableException, UnauthorizedActionException;
 
-        for(int i=0; i<5; i++) {
-            int rand = random.nextInt(allQues.size());
-            qList.add(allQues.get(rand));
-            allQues.remove(rand);
-        }
+    Page<Quiz> search(String query, Pageable pageable);
 
-        qForm.setQuestions(qList);
+    Result checkAnswers(Quiz quiz, List<Response> answersBundle);
 
-        return qForm;
-    }
-
-    public int getResult(QuestionForm qForm) {
-        int correct = 0;
-
-        for(Question q: qForm.getQuestions())
-            if(q.getAnswer() == q.getChose())
-                correct++;
-
-        return correct;
-    }
-
-    public void saveScore(Result result) {
-        Result saveResult = new Result();
-        saveResult.setEmail(result.getEmail());
-        saveResult.setTotalCorrect(result.getTotalCorrect());
-        resultRepo.save(saveResult);
-    }
+    void publishQuiz(Quiz quiz);
 }

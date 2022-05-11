@@ -1,126 +1,100 @@
 package com.example.snickersdevops.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.Calendar;
+import java.util.List;
 
 @Component
 @Entity
-@Table(name = "questions")
-public class Question {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int question_ID;
-    private String title;
+@Table(name = "question")
+public class Question extends BaseModel implements UserOwned {
+    @Size(min = 2, max = 150, message = "The question should be between 2 and 150 characters")
+    @NotEmpty(message = "Question text not provided")
+    @Column(nullable = false)
+    private String text;
 
-    private String optionA;
-    private String optionB;
-    private String optionC;
-    private String optionD;
-    private String optionE;
+    @ManyToOne
+    @JsonIgnore
+    private Quiz quiz;
 
-    private int answer;
-    private int chose;
+    @Column(name = "q_order")
+    private Integer order;
 
-    public Question(){
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Answer> answers;
 
-    public Question(int question_ID, String title, String optionA, String optionB, String optionC, String optionD, String optionE, int answer, int chose) {
-        this.question_ID = question_ID;
-        this.title = title;
-        this.optionA = optionA;
-        this.optionB = optionB;
-        this.optionC = optionC;
-        this.optionD = optionD;
-        this.optionE = optionE;
-        this.answer = answer;
-        this.chose = chose;
-    }
+    @JsonIgnore
+    @OneToOne
+    private Answer correctAnswer;
 
-    public int getQuestion_ID() {
-        return question_ID;
-    }
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+    private Calendar dateCreated;
 
-    public void setQuestion_ID(int question_ID) {
-        this.question_ID = question_ID;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getOptionA() {
-        return optionA;
-    }
-
-    public void setOptionA(String optionA) {
-        this.optionA = optionA;
-    }
-
-    public String getOptionB() {
-        return optionB;
-    }
-
-    public void setOptionB(String optionB) {
-        this.optionB = optionB;
-    }
-
-    public String getOptionC() {
-        return optionC;
-    }
-
-    public void setOptionC(String optionC) {
-        this.optionC = optionC;
-    }
-
-    public String getOptionD() {
-        return optionD;
-    }
-
-    public void setOptionD(String optionD) {
-        this.optionD = optionD;
-    }
-
-    public String getOptionE() {
-        return optionE;
-    }
-
-    public void setOptionE(String optionE) {
-        this.optionE = optionE;
-    }
-
-    public int getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(int answer) {
-        this.answer = answer;
-    }
-
-    public int getChose() {
-        return chose;
-    }
-
-    public void setChose(int chose) {
-        this.chose = chose;
-    }
+    @JsonIgnore
+    private Boolean isValid = false;
 
     @Override
-    public String toString() {
-        return "Question{" +
-                "question_ID=" + question_ID +
-                ", title='" + title + '\'' +
-                ", optionA='" + optionA + '\'' +
-                ", optionB='" + optionB + '\'' +
-                ", optionC='" + optionC + '\'' +
-                ", optionD='" + optionD + '\'' +
-                ", optionE='" + optionE + '\'' +
-                ", answer=" + answer +
-                ", chose=" + chose +
-                '}';
+    @JsonIgnore
+    public User getUser() {
+        return quiz.getUser();
     }
+
+    public Calendar getDateCreated() {
+        return dateCreated;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public Boolean getIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(Boolean isValid) {
+        this.isValid = isValid;
+    }
+
+    public Answer getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(Answer correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
 }

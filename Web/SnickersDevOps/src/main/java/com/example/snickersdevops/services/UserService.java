@@ -1,6 +1,7 @@
 package com.example.snickersdevops.services;
 
 import com.example.snickersdevops.dto.UserRegistrationDto;
+import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
 import com.example.snickersdevops.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,4 +12,6 @@ public interface UserService extends UserDetailsService {
     User save(UserRegistrationDto userRegistrationDto);
 
     Page<User> findAllBySearch(String searchTerm, Pageable pageable);
+
+    User find(Long id) throws ResourceUnavailableException;
 }
