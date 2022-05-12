@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 
 @Entity
-@Table(name = "quizes")
+@Table(name = "quiz")
 public class Quiz extends BaseModel implements UserOwned {
 
     @JsonIgnore

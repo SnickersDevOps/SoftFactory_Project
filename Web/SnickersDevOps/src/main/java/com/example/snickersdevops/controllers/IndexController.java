@@ -91,11 +91,6 @@ public class IndexController {
         return "qazaqstan_tarih";
     }
 
-    @GetMapping("/profile")
-    public String profilePage(){
-        return "profile";
-    }
-
     @GetMapping("/test")
     public String testPage(){
         return "test";

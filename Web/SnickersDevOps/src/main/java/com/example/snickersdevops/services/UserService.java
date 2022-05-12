@@ -14,4 +14,6 @@ public interface UserService extends UserDetailsService {
     Page<User> findAllBySearch(String searchTerm, Pageable pageable);
 
     User find(Long id) throws ResourceUnavailableException;
+
+    User findByEmail(String email) throws ResourceUnavailableException;
 }

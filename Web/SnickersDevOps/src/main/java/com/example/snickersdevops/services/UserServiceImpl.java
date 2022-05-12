@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> findAllBySearch(String searchTerm, Pageable pageable) {
-        //TODO impement this method
+        //TODO implement this method
         return null;
     }
 
@@ -61,6 +61,18 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             logger.error("The user " + id + " can't be found");
             throw new ResourceUnavailableException("User " + id + " not found.");
+        }
+
+        return user;
+    }
+
+    @Override
+    public User findByEmail(String email) throws ResourceUnavailableException {
+        User user = userRepository.findByEmail(email);
+
+        if (user == null) {
+            logger.error("The mail " + email + " can't be found");
+            throw new ResourceUnavailableException("The mail " + email + " can't be found");
         }
 
         return user;
