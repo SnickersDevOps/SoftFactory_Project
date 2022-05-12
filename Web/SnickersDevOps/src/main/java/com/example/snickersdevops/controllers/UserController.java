@@ -11,24 +11,25 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(UserController.ROOT_MAPPING)
+@RequestMapping("/user")
 public class UserController {
 
-    public static final String ROOT_MAPPING = "/users";
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    UserService userService;
+//
+//    @RequestMapping(value = "/{user_id}/quizzes", method = RequestMethod.GET)
+//    @PreAuthorize("permitAll")
+//    public String getQuizzesForUser(@PathVariable Long user_id) {
+//        userService.find(user_id);
+//
+//        // TODO: Unimplemented
+//        return "error";
+//    }
+//
+//    @RequestMapping(value = "/quizes", method = RequestMethod.GET)
+//    @PreAuthorize("isAuthenticated()")
+//    public String getQuizzesForAuthenticatedUser() {
+//        return "myQuizzes";
+//    }
 
-    @Autowired
-    private QuizService quizService;
-
-    @GetMapping(value = "/{user_id}/quizzes")
-    @PreAuthorize("permitAll")
-    @ResponseStatus(HttpStatus.OK)
-    public Page<Quiz> getQuizzesByUser(Pageable pageable, @PathVariable Long user_id) {
-        logger.debug("Requested page " + pageable.getPageNumber() + " from user " + user_id);
-
-        User user = userService.find(user_id);
-        return quizService.findQuizzesByUser(user, pageable);
-    }
 }

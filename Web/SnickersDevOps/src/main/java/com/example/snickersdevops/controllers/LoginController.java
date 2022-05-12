@@ -4,6 +4,7 @@ package com.example.snickersdevops.controllers;
 import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,14 +30,13 @@ public class LoginController {
     }
 
     @GetMapping("/admin")
+    @PreAuthorize("isAuthenticated()")
     public String getAdminPage(Model model) {
-        model.addAttribute("user", new User());
-        List<User> userList = userRepository.findAll();
-        model.addAttribute("userList", userList);
         return "admin";
     }
 
     @PostMapping("/createUser")
+    @PreAuthorize("permitAll")
     public String createUser(@ModelAttribute("user") User user) {
         userRepository.save(user);
         return "redirect:/admin";

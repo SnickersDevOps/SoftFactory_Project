@@ -1,12 +1,14 @@
 package com.example.snickersdevops.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -15,11 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseModel implements UserOwned, Serializable {
 
     @Column(name = "first_name")
     private String firstName;
@@ -44,4 +42,9 @@ public class User {
     )
     private List<Role> roles;
 
+    @Override
+    @JsonIgnore
+    public User getUser() {
+        return this;
+    }
 }
