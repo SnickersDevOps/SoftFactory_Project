@@ -50,6 +50,10 @@ public class IndexController {
         this.userService = userService;
     }
 
+    @GetMapping("/index")
+    public String home() {
+        return "/index";
+    }
 
     @GetMapping("/biology")
     public String BiologyCourse(){

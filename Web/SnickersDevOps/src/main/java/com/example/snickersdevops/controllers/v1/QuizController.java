@@ -20,12 +20,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(RestQuizController.ROOT_MAPPING)
-public class RestQuizController {
+@RequestMapping(QuizController.ROOT_MAPPING)
+public class QuizController {
 
 	public static final String ROOT_MAPPING = "/api/quizzes";
 	
-	private static final Logger logger = LoggerFactory.getLogger(RestQuizController.class);
+	private static final Logger logger = LoggerFactory.getLogger(QuizController.class);
 
 	@Autowired
 	private QuizService quizService;

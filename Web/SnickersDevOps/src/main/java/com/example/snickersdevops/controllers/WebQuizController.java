@@ -3,25 +3,27 @@ package com.example.snickersdevops.controllers;
 import com.example.snickersdevops.controllers.utils.RestVerifier;
 import com.example.snickersdevops.exсeptions.ModelVerificationException;
 import com.example.snickersdevops.models.*;
+import com.example.snickersdevops.repository.QuizRepo;
 import com.example.snickersdevops.services.*;
 import com.example.snickersdevops.services.accesscontrol.AccessControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-public class QuizController {
+public class WebQuizController {
 
     @Autowired
     QuizService quizService;
+
+    @Autowired
+    private QuizRepo quizRepository;
 
     @Autowired
     QuestionService questionService;
@@ -40,13 +42,12 @@ public class QuizController {
 
     @RequestMapping(value = "/createQuiz", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated()")
-    public String newQuiz(@Valid Quiz quiz, BindingResult result,
-                          Map<String, Object> model) {
+    public String newQuiz(@ModelAttribute("quiz") Quiz quiz, BindingResult result) {
         Quiz newQuiz;
 
         try {
             RestVerifier.verifyModelResult(result);
-            newQuiz = quizService.save(quiz);
+            newQuiz = quizRepository.save(quiz);
         } catch (ModelVerificationException e) {
             return "createQuiz";
         }

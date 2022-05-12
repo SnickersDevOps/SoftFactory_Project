@@ -26,7 +26,7 @@ public class LoginController {
 
     @GetMapping("/")
     public String home() {
-        return "index";
+        return "/index";
     }
 
     @GetMapping("/admin")
