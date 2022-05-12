@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="/styles/loginPageStyle.css">
 </head>
 <!--/*@thymesVar id="id" type=""*/-->
-<!--<body ng-app="myQuizzesApp" th:attr="ng-init='userId='+${#authentication.principal.id}">-->
+<body ng-app="myQuizzesApp">
 
 	<div class="container">
 		<div class="col-sm-2">
@@ -27,10 +27,9 @@
 			<table class="table table-hover" align="center">
 				<thead>
 					<tr>
-						<th th:text="#{label.myquizzes.maintable.headers.quiz}" width="70%">Quiz</th>
-						<th th:text="#{label.myquizzes.maintable.headers.questions}">Questions</th>
-						<th th:text="#{label.myquizzes.maintable.headers.times}">Times played</th>
-						<th th:text="#{label.myquizzes.maintable.headers.edit}">Edit</th>
+						<th width="70%">Тест</th>
+						<th>Количество Вопросов</th>
+						<th>Редактировать</th>
 					</tr>
 				</thead>
 				<tbody>				
@@ -41,9 +40,6 @@
 						</td>
 						<td>
 							<p>20</p>
-						</td>
-						<td>
-							<p>5033</p>
 						</td>
 						<td>
 							<div class="btn-group">
@@ -67,8 +63,9 @@
 		</div>
 
 	</div>
-	<script src="/js/myQuizzesApp.js"></script>
-	<script src="http://cdn.jsdelivr.net/webjars/angularjs/1.3.8/angular.min.js"></script>
+	<div th:replace="parts/angular.html :: angular">...</div>
+	<script type="text/javascript" src="../js/myQuizzesApp.js"
+		th:src="@{/js/myQuizzesApp.js}"></script>
 
 </body>
 </html>
