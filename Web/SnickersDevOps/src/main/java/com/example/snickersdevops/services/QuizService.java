@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public interface QuizService {
-    Quiz save(Quiz quiz);
+    Quiz save(Quiz quiz, User user);
 
     Page<Quiz> findAll(Pageable pageable);
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Calendar;
 import java.util.List;
@@ -12,18 +13,17 @@ import java.util.List;
 @Table(name = "quiz")
 public class Quiz extends BaseModel implements UserOwned {
 
+
+    @OneToOne
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    private User user;
+    private User createdBy;
 
     @Size(min = 2, max = 100, message = "The name must be between 2 and 100 messages.")
-    @NotEmpty(message = "Please provide a name")
-    @Column(nullable = false)
+    @NotNull(message = "Please provide a name")
     private String name;
 
     @Size(max = 500, message = "The description can't be longer than 500 characters.")
-    @NotEmpty(message = "Please, provide a description")
-    @Column(nullable = false)
+    @NotNull(message = "Please, provide a description")
     private String description;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -31,26 +31,28 @@ public class Quiz extends BaseModel implements UserOwned {
     private List<Question> questions;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
-    private Calendar dateCreated;
+    private Calendar createdDate;
 
     private Boolean isPublished = false;
 
-    @Override
-    @JsonIgnore
-    public User getUser() {
-        return user;
+    public Calendar getCreatedDate() {
+        return createdDate;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public List<Question> getQuestions() {
+        return questions;
     }
 
-    public Calendar getDateCreated() {
-        return dateCreated;
+    public void setQuestions(List<Question> exercises) {
+        this.questions = exercises;
     }
 
-    public void setDateCreated(Calendar dateCreated) {
-        this.dateCreated = dateCreated;
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 
     public String getDescription() {
@@ -69,20 +71,18 @@ public class Quiz extends BaseModel implements UserOwned {
         this.name = name;
     }
 
+    @Override
+    @JsonIgnore
+    public User getUser() {
+        return getCreatedBy();
+    }
+
     public Boolean getIsPublished() {
         return isPublished;
     }
 
     public void setIsPublished(Boolean isPublished) {
         this.isPublished = isPublished;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
     }
 }
 

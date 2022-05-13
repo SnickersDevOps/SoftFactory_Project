@@ -30,7 +30,8 @@ public class QuizServiceImpl implements QuizService {
 	}
 
 	@Override
-	public Quiz save(Quiz quiz) {
+	public Quiz save(Quiz quiz, User user) {
+		quiz.setCreatedBy(user);
 		return quizRepository.save(quiz);
 	}
 

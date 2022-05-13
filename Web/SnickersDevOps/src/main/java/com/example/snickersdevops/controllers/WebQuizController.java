@@ -8,12 +8,14 @@ import com.example.snickersdevops.services.*;
 import com.example.snickersdevops.services.accesscontrol.AccessControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -42,12 +44,13 @@ public class WebQuizController {
 
     @RequestMapping(value = "/createQuiz", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated()")
-    public String newQuiz(@ModelAttribute("quiz") Quiz quiz, BindingResult result) {
+    public String newQuiz(@AuthenticationPrincipal AuthenticatedUser user, @Valid Quiz quiz, BindingResult result,
+                          Map<String, Object> model) {
         Quiz newQuiz;
 
         try {
             RestVerifier.verifyModelResult(result);
-            newQuiz = quizRepository.save(quiz);
+            newQuiz = quizService.save(quiz, user.getUser());
         } catch (ModelVerificationException e) {
             return "createQuiz";
         }

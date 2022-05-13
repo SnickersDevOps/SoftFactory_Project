@@ -2,6 +2,7 @@ package com.example.snickersdevops.services;
 
 import com.example.snickersdevops.dto.UserRegistrationDto;
 import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
+import com.example.snickersdevops.exсeptions.UnauthorizedActionException;
 import com.example.snickersdevops.models.Role;
 import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.repository.UserRepository;
@@ -76,6 +77,13 @@ public class UserServiceImpl implements UserService {
         }
 
         return user;
+    }
+
+    @Override
+    public void delete(Long user_id) throws UnauthorizedActionException, ResourceUnavailableException {
+        User userToDelete = find(user_id);
+
+        userRepository.delete(userToDelete);
     }
 
     @Override

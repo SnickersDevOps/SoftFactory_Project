@@ -4,13 +4,11 @@ package com.example.snickersdevops.controllers;
 import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +17,9 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/login")
-    public String login() {
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @PreAuthorize("permitAll")
+    public String login(@ModelAttribute User user) {
         return "login";
     }
 

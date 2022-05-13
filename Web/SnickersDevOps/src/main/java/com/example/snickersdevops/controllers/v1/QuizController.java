@@ -38,7 +38,7 @@ public class QuizController {
 	@ResponseStatus(HttpStatus.OK)
 	public Page<Quiz> findAll(Pageable pageable,
 							  @RequestParam(required = false, defaultValue = "false") Boolean published) {
-		
+
 		if (published) {
 			return quizService.findAllPublished(pageable);
 		} else {
@@ -50,7 +50,7 @@ public class QuizController {
 	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
 	public Page<Quiz> searchAll(Pageable pageable, @RequestParam(required = true) String filter,
-			@RequestParam(required = false, defaultValue = "false") Boolean onlyValid) {
+								@RequestParam(required = false, defaultValue = "false") Boolean onlyValid) {
 
 		return quizService.search(filter, pageable);
 	}
@@ -61,10 +61,10 @@ public class QuizController {
 	public Quiz save(@AuthenticationPrincipal AuthenticatedUser user, @Valid Quiz quiz, BindingResult result) {
 
 		logger.debug("The Quiz " + quiz.getName() + " is going to be created");
-		
+
 		RestVerifier.verifyModelResult(result);
 
-		return quizService.save(quiz);
+		return quizService.save(quiz, user.getUser());
 	}
 
 	@RequestMapping(value = "/{quiz_id}", method = RequestMethod.GET)
@@ -98,7 +98,7 @@ public class QuizController {
 	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
 	public List<Question> findQuestions(@PathVariable Long quiz_id,
-			@RequestParam(required = false, defaultValue = "false") Boolean onlyValid) {
+										@RequestParam(required = false, defaultValue = "false") Boolean onlyValid) {
 
 		Quiz quiz = quizService.find(quiz_id);
 

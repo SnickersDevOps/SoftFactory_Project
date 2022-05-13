@@ -14,22 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-//    @Autowired
-//    UserService userService;
-//
-//    @RequestMapping(value = "/{user_id}/quizzes", method = RequestMethod.GET)
-//    @PreAuthorize("permitAll")
-//    public String getQuizzesForUser(@PathVariable Long user_id) {
-//        userService.find(user_id);
-//
-//        // TODO: Unimplemented
-//        return "error";
-//    }
-//
-//    @RequestMapping(value = "/quizes", method = RequestMethod.GET)
-//    @PreAuthorize("isAuthenticated()")
-//    public String getQuizzesForAuthenticatedUser() {
-//        return "myQuizzes";
-//    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @PreAuthorize("permitAll")
+    public String login(@ModelAttribute User user) {
+        return "login";
+    }
 
 }
