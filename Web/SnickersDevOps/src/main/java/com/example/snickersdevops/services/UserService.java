@@ -12,11 +12,11 @@ public interface UserService extends UserDetailsService {
 
     User save(UserRegistrationDto userRegistrationDto);
 
+    void delete(Long user_id) throws UnauthorizedActionException, ResourceUnavailableException;
+
     Page<User> findAllBySearch(String searchTerm, Pageable pageable);
 
     User find(Long id) throws ResourceUnavailableException;
-
-    void delete(Long user_id) throws UnauthorizedActionException, ResourceUnavailableException;
 
     User findByEmail(String email) throws ResourceUnavailableException;
 }

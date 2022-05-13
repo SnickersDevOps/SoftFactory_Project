@@ -68,6 +68,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void delete(Long user_id) throws UnauthorizedActionException, ResourceUnavailableException {
+        User userToDelete = find(user_id);
+
+        userRepository.delete(userToDelete);
+    }
+
+    @Override
     public User findByEmail(String email) throws ResourceUnavailableException {
         User user = userRepository.findByEmail(email);
 
@@ -77,13 +84,6 @@ public class UserServiceImpl implements UserService {
         }
 
         return user;
-    }
-
-    @Override
-    public void delete(Long user_id) throws UnauthorizedActionException, ResourceUnavailableException {
-        User userToDelete = find(user_id);
-
-        userRepository.delete(userToDelete);
     }
 
     @Override

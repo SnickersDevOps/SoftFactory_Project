@@ -12,12 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    @PreAuthorize("permitAll")
-    public String login(@ModelAttribute User user) {
-        return "login";
-    }
+public class WebUserController {
 
 }

@@ -50,8 +50,13 @@ public class IndexController {
         this.userService = userService;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String home() {
+        return "/index";
+    }
+
+    @GetMapping("/index")
+    public String homePage() {
         return "/index";
     }
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class LoginController {
+public class UserManagementController {
     @Autowired
     private UserRepository userRepository;
 
@@ -21,11 +21,6 @@ public class LoginController {
     @PreAuthorize("permitAll")
     public String login(@ModelAttribute User user) {
         return "login";
-    }
-
-    @GetMapping("/")
-    public String home() {
-        return "/index";
     }
 
     @GetMapping("/admin")

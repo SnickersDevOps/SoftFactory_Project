@@ -34,10 +34,4 @@ public class ProfileController {
         return "profile";
     }
 
-//    @GetMapping("/profile/{id}")
-//    public String showUserData(@PathVariable("id") Long id, Model model) {
-//        User user = userRepository.getUsersById(id);
-//        model.addAttribute("user", user);
-//        return "profile";
-//    }
 }
