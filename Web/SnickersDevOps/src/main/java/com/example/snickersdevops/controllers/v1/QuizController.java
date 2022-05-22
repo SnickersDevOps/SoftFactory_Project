@@ -1,10 +1,13 @@
 package com.example.snickersdevops.controllers.v1;
 
 import com.example.snickersdevops.controllers.utils.RestVerifier;
-import com.example.snickersdevops.models.*;
+import com.example.snickersdevops.models.AuthenticatedUser;
+import com.example.snickersdevops.models.Question;
+import com.example.snickersdevops.models.Quiz;
 import com.example.snickersdevops.models.support.Response;
 import com.example.snickersdevops.models.support.Result;
-import com.example.snickersdevops.services.*;
+import com.example.snickersdevops.services.QuestionService;
+import com.example.snickersdevops.services.QuizService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +27,7 @@ import java.util.List;
 public class QuizController {
 
 	public static final String ROOT_MAPPING = "/api/quizzes";
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(QuizController.class);
 
 	@Autowired

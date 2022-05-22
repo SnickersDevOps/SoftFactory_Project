@@ -1,55 +1,79 @@
 package com.example.snickersdevops.services;
 
-import com.example.snickersdevops.dto.UserRegistrationDto;
 import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
 import com.example.snickersdevops.exсeptions.UnauthorizedActionException;
-import com.example.snickersdevops.models.Role;
+import com.example.snickersdevops.exсeptions.UserAlreadyExistsException;
+import com.example.snickersdevops.models.AuthenticatedUser;
 import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository,
+                           PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public User save(UserRegistrationDto userRegistrationDto) {
-        User user = new User();
-        user.setFirstName(userRegistrationDto.getFirstName());
-        user.setLastName(userRegistrationDto.getLastName());
-        user.setEmail(userRegistrationDto.getEmail());
-        user.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
-        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+    public User saveUser(User user) throws UserAlreadyExistsException {
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            logger.error("The mail " + user.getEmail() + " is already in use");
+            throw new UserAlreadyExistsException("The mail " + user.getEmail() + " is already in use");
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(false);
 
         return userRepository.save(user);
     }
 
     @Override
-    public Page<User> findAllBySearch(String searchTerm, Pageable pageable) {
-        //TODO implement this method
-        return null;
+    /*
+     * Look up by both Email and Username. Throw exception if it wasn't in
+     * either. TODO: Join Username and Email into one JPQL
+     */
+    public AuthenticatedUser loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user;
+
+        try {
+            user = findByUsername(username);
+        } catch (ResourceUnavailableException e) {
+            try {
+                user = findByEmail(username);
+            } catch (ResourceUnavailableException e2) {
+                throw new UsernameNotFoundException(username + " couldn't be resolved to any user");
+            }
+        }
+
+        return new AuthenticatedUser(user);
+    }
+
+    @Override
+    public User findByUsername(String username) throws ResourceUnavailableException {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            logger.error("The user " + username + " doesn't exist");
+            throw new ResourceUnavailableException("The user " + username + " doesn't exist");
+        }
+
+        return user;
     }
 
     @Override
@@ -75,6 +99,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User setRegistrationCompleted(User user) {
+        user.setEnabled(true);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public boolean isRegistrationCompleted(User user) {
+        return user.getEnabled();
+    }
+
+    @Override
     public User findByEmail(String email) throws ResourceUnavailableException {
         User user = userRepository.findByEmail(email);
 
@@ -87,19 +122,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        User user = userRepository.findByEmail(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("INVALID USERNAME OR PASSWORD");
-        }
-
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
-    }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream().map( role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
+    public User updatePassword(User user, String password) throws ResourceUnavailableException {
+        user.setPassword(passwordEncoder.encode(password));
+        return userRepository.save(user);
     }
 
 }

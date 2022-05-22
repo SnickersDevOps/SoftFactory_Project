@@ -1,28 +1,29 @@
+
 <th:block th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml">
     <nav class="container-fluid">
         <a href="/"><img src="/images/Logo.png" alt="" width="120px"></a>
 
-        <ul class="list nav col-12 justify-content-center col-lg-auto me-lg-auto mb-2 mb-md-0">
-            <!--                <li><a href="#" class="nav-link px-2">FAQs</a></li>-->
-            <!--                <li><a href="#" class="nav-link px-2">About</a></li>-->
-        </ul>
-        <ul class = "nav">
+        <ul class = "nav list justify-content-center col-lg-auto me-lg-auto mb-2 mb-md-0">
             <li sec:authorize ="!isAuthenticated()">
-                <a href="/login" class="loginBtn btn text-decoration-none me-2">
+                <a href="/user/login" class="loginBtn btn text-decoration-none me-2">
                     Log In
                 </a>
             </li>
-            <li class="w3-col s3" sec:authorize = "hasRole('USER')">
-                <a class="loginBtn btn text-decoration-none me-2" th:href="@{/profile/{id}(id=${userId})}">
+            <li sec:authorize ="isAuthenticated()">
+                <a href="/user/quizzes" class="loginBtn btn text-decoration-none me-2">
+                    My Quizzes
+                </a>
+            </li>
+            <li sec:authorize ="isAuthenticated()">
+                <a href="/profile" class="loginBtn btn text-decoration-none me-2">
                     Profile
                 </a>
             </li>
-            <li class="w3-col s3" sec:authorize = "hasRole('USER')">
-                <a href="/logout" class="loginBtn btn text-decoration-none me-2">
-                    Log out
+            <li sec:authorize ="isAuthenticated()">
+                <a href="/createQuiz" class="loginBtn btn text-decoration-none me-2">
+                    Create Quiz
                 </a>
             </li>
         </ul>
-        <!--        th:href="@{/profile/{id}(id=${user.getId()})}"№-->
     </nav>
 </th:block>

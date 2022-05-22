@@ -1,75 +1,93 @@
 package com.example.snickersdevops.config;
 
-
-import com.example.snickersdevops.services.UserService;
-import com.example.snickersdevops.services.UserServiceImpl;
+import com.example.snickersdevops.controllers.v1.RestUserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig {
 
-    private final UserService userService;
-    private final PasswordConfig passwordConfig;
-    private final UserServiceImpl userServiceImpl;
+	@Autowired
+	DataSource dataSource;
 
+	@Bean
+	public PersistentTokenRepository persistentTokenRepository() {
+		JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+		db.setDataSource(dataSource);
+		return db;
+	}
 
-    @Autowired
-    public SecurityConfig(UserService userService, PasswordConfig passwordConfig, UserServiceImpl userServiceImpl) {
-        this.userService = userService;
-        this.passwordConfig = passwordConfig;
-        this.userServiceImpl = userServiceImpl;
-    }
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService userDetailsService,
+			PasswordEncoder encoder) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
+	}
 
+	@Configuration
+	@Order(1)
+	public static class RestWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        String[] staticResources  =  {
-                "/static/**",
-                "/styles/*",
-                "/images/**",
-                "/js/**",
-                "/parts/**",
-                "/login/**",
-                "/registration/**"
-        };
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http
+				.antMatcher("/api/**")
+					.authorizeRequests()
+					.antMatchers("/createQuiz").hasRole("ADMIN")
+					.antMatchers("/user/**").hasRole("ADMIN")
+					.anyRequest()
+						.permitAll()
+				.and()
+					.httpBasic()
+				.and()
+					.csrf()
+						.disable()
+					.logout()
+						.logoutUrl(RestUserController.ROOT_MAPPING + "/logout")
+						.logoutSuccessUrl(RestUserController.ROOT_MAPPING + "/logoutDummy")
+						.deleteCookies("JSESSIONID")
+						.invalidateHttpSession(true);
+		}
+	}
 
-        http.authorizeRequests()
-                .antMatchers(staticResources).permitAll()
-                .antMatchers("/index/**").hasAnyRole("USER", "ADMIN")
-                .and()
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/")
-                        .failureUrl("/login?error=true")
-                )
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .permitAll();
-    }
+	@Configuration
+	public static class WebWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring()
-                .antMatchers("/resources/**", "/static/**");
-    }
+		@Autowired
+		PersistentTokenRepository persistentTokenRepository;
+
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http
+				.formLogin()
+					.loginPage("/user/login")
+					.failureUrl("/user/login-error")
+					.defaultSuccessUrl("/", true)
+				.and()
+					.rememberMe()
+					.tokenRepository(persistentTokenRepository)
+				.and()
+					.csrf()
+						.disable()
+					.logout()
+						.logoutSuccessUrl("/")
+						.deleteCookies("JSESSIONID")
+						.invalidateHttpSession(true);
+		}
+	}
+
 }

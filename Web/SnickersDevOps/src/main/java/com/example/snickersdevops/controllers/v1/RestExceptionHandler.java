@@ -41,6 +41,13 @@ public class RestExceptionHandler {
 		return new ErrorInfo(req.getRequestURL().toString(), ex, HttpStatus.BAD_REQUEST.value());
 	}
 
+	@ExceptionHandler(InvalidTokenException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseBody
+	public ErrorInfo invalidTokenError(HttpServletRequest req, Exception ex) {
+		return new ErrorInfo(req.getRequestURL().toString(), ex, HttpStatus.BAD_REQUEST.value());
+	}
+
 	@ExceptionHandler(InvalidParametersException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody

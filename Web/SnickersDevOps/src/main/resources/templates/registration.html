@@ -14,7 +14,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <a href="index" class="back"> < Back</a>
+                    <a href="/" class="back"> < Back</a>
                 </div>
                 <div class="col createAccount">
                     <a href="login" class = "createAccountLink">log in</a>
@@ -24,7 +24,7 @@
         </div>
     </header>
     <main class="mainContainer d-flex justify-content-center">
-        <form  method="POST" id="signup-form" th:action="@{/registration}" th:object="${user}"  class = "loginForm">
+        <form  action="/user/registration" th:object="${user}" method="POST" enctype="utf8"  name="registrationForm" onsubmit="return validateRegistrationForm();">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="text"  th:field="*{email}" class="form-control" name="email" id="email" placeholder="Email">

@@ -1,7 +1,11 @@
 package com.example.snickersdevops.services;
 
-import com.example.snickersdevops.exсeptions.*;
-import com.example.snickersdevops.models.*;
+import com.example.snickersdevops.exсeptions.ActionRefusedException;
+import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
+import com.example.snickersdevops.exсeptions.UnauthorizedActionException;
+import com.example.snickersdevops.models.Answer;
+import com.example.snickersdevops.models.Question;
+import com.example.snickersdevops.models.Quiz;
 import com.example.snickersdevops.repository.QuestionRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

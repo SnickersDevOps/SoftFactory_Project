@@ -2,17 +2,20 @@ package com.example.snickersdevops.controllers;
 
 import com.example.snickersdevops.controllers.utils.RestVerifier;
 import com.example.snickersdevops.exсeptions.ModelVerificationException;
-import com.example.snickersdevops.models.*;
-import com.example.snickersdevops.repository.QuizRepo;
-import com.example.snickersdevops.services.*;
+import com.example.snickersdevops.models.AuthenticatedUser;
+import com.example.snickersdevops.models.Question;
+import com.example.snickersdevops.models.Quiz;
+import com.example.snickersdevops.services.QuestionService;
+import com.example.snickersdevops.services.QuizService;
 import com.example.snickersdevops.services.accesscontrol.AccessControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -25,9 +28,6 @@ public class WebQuizController {
     QuizService quizService;
 
     @Autowired
-    private QuizRepo quizRepository;
-
-    @Autowired
     QuestionService questionService;
 
     @Autowired
@@ -35,6 +35,11 @@ public class WebQuizController {
 
     @Autowired
     AccessControlService<Question> accessControlServiceQuestion;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home() {
+        return "index";
+    }
 
     @RequestMapping(value = "/createQuiz", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated()")

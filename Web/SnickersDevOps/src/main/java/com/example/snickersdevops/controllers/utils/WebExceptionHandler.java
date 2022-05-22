@@ -36,6 +36,12 @@ public class WebExceptionHandler {
 		return setModelAndView(req.getRequestURL().toString(), ex, HttpStatus.BAD_REQUEST.value());
 	}
 
+	@ExceptionHandler(InvalidTokenException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ModelAndView invalidTokenError(HttpServletRequest req, Exception ex) {
+		return setModelAndView(req.getRequestURL().toString(), ex, HttpStatus.BAD_REQUEST.value());
+	}
+
 	@ExceptionHandler(InvalidParametersException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ModelAndView invalidParametersError(HttpServletRequest req, Exception ex) {

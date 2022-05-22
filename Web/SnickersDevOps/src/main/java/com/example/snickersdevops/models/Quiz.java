@@ -3,7 +3,6 @@ package com.example.snickersdevops.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Calendar;
@@ -12,7 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "quiz")
 public class Quiz extends BaseModel implements UserOwned {
-
 
     @OneToOne
     @JsonIgnore
@@ -85,4 +83,5 @@ public class Quiz extends BaseModel implements UserOwned {
         this.isPublished = isPublished;
     }
 }
+
 
