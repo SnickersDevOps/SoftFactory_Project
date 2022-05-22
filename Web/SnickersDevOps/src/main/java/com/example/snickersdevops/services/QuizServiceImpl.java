@@ -1,15 +1,9 @@
 package com.example.snickersdevops.services;
 
-import com.example.snickersdevops.exсeptions.ActionRefusedException;
-import com.example.snickersdevops.exсeptions.InvalidParametersException;
-import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
-import com.example.snickersdevops.exсeptions.UnauthorizedActionException;
-import com.example.snickersdevops.models.Question;
-import com.example.snickersdevops.models.Quiz;
-import com.example.snickersdevops.models.User;
-import com.example.snickersdevops.models.support.Response;
-import com.example.snickersdevops.models.support.Result;
+import com.example.snickersdevops.exсeptions.*;
+import com.example.snickersdevops.models.*;
 import com.example.snickersdevops.repository.QuizRepo;
+import com.example.snickersdevops.models.support.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service("QuizService")

@@ -1,6 +1,10 @@
 package com.example.snickersdevops.models.support;
 
 
+import org.springframework.stereotype.Component;
+
+import javax.persistence.*;
+
 public class Result {
     private int totalQuestions = 0;
     private int correctQuestions = 0;

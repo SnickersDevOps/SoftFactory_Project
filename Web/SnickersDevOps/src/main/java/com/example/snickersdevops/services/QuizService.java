@@ -2,13 +2,11 @@ package com.example.snickersdevops.services;
 
 import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
 import com.example.snickersdevops.exсeptions.UnauthorizedActionException;
-import com.example.snickersdevops.models.Quiz;
-import com.example.snickersdevops.models.User;
+import com.example.snickersdevops.models.*;
 import com.example.snickersdevops.models.support.Response;
 import com.example.snickersdevops.models.support.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import java.util.List;
 
 

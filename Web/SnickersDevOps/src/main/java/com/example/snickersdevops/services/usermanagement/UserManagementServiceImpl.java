@@ -1,5 +1,6 @@
 package com.example.snickersdevops.services.usermanagement;
 
+import com.example.snickersdevops.models.User;
 import com.example.snickersdevops.services.UserService;
 import com.example.snickersdevops.services.usermanagement.token.TokenDeliverySystem;
 import org.springframework.beans.factory.annotation.Autowired;

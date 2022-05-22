@@ -1,9 +1,7 @@
 package com.example.snickersdevops.services;
 
 import com.example.snickersdevops.exсeptions.*;
-import com.example.snickersdevops.models.Answer;
-import com.example.snickersdevops.models.Question;
-import com.example.snickersdevops.models.Quiz;
+import com.example.snickersdevops.models.*;
 
 import java.util.List;
 

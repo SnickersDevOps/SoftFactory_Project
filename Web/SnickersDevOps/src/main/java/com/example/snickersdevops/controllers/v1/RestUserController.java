@@ -1,5 +1,6 @@
 package com.example.snickersdevops.controllers.v1;
 
+import com.example.snickersdevops.controllers.WebUserController;
 import com.example.snickersdevops.controllers.utils.RestVerifier;
 import com.example.snickersdevops.models.AuthenticatedUser;
 import com.example.snickersdevops.models.Quiz;

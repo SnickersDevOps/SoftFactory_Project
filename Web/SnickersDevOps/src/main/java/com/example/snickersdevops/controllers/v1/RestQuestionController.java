@@ -1,12 +1,8 @@
 package com.example.snickersdevops.controllers.v1;
 
 import com.example.snickersdevops.controllers.utils.RestVerifier;
-import com.example.snickersdevops.models.Answer;
-import com.example.snickersdevops.models.Question;
-import com.example.snickersdevops.models.Quiz;
-import com.example.snickersdevops.services.AnswerService;
-import com.example.snickersdevops.services.QuestionService;
-import com.example.snickersdevops.services.QuizService;
+import com.example.snickersdevops.models.*;
+import com.example.snickersdevops.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

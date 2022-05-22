@@ -1,7 +1,6 @@
 package com.example.snickersdevops.repository;
 
-import com.example.snickersdevops.models.Quiz;
-import com.example.snickersdevops.models.User;
+import com.example.snickersdevops.models.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
