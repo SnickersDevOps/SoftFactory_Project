@@ -10,13 +10,9 @@ main {
     padding: 5%;
     background-color: rgba(217, 212, 212, 0.5);
     border-radius: 10px;
+    width: border-box;
 }
 
-.profileImg {
-    width: 200px;
-    border: 1px solid #303952;
-    border-radius: 15px;
-}
 .editProfile {
     text-align: right;
 }

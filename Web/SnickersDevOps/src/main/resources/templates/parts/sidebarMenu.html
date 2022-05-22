@@ -1,30 +1,28 @@
 <th:block th:fragment="menu" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <head>
+        <style>
+            aside {
+                font-size: 14pt;
+            }
+        </style>
+    </head>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="/" class="brand-link">
             <img src="/images/Logo.png" alt="UNT helper logo" class="brand-image img-circle elevation-3" style="opacity: .8" width="120px">
-            <span class="brand-text font-weight-light">UBT Helper</span>
         </a>
         <div class="sidebar">
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="info">
-                    <span sec:authentication="principal.username">admin name should be here</span>
-                </div>
-            </div>
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                    <li class="nav-item"></li>
                     <li class="nav-item">
-                        <a href="#" th:href="@{/userList}" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>User List</p>
-                        </a>
+                        <p sec:authentication="principal.username">
+                            admin name should be here
+                        </p>
                     </li>
                     <li class="nav-item">
-                        <a href="#" th:href="@{/quizzes}" class="nav-link">
+                        <a href="#" th:href="@{/user/quizzes}" class="nav-link">
                             <i class="nav-icon fas fa-question"></i>
                             <p>
                                 Quiz List
-                                <span class="right badge badge-danger">New</span>
                             </p>
                         </a>
                     </li>
@@ -33,7 +31,6 @@
                             <i class="nav-icon fas fa-question"></i>
                             <p>
                                 Create Quiz
-                                <span class="right badge badge-danger">New</span>
                             </p>
                         </a>
                     </li>
