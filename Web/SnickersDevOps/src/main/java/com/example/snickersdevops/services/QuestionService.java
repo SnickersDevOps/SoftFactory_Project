@@ -1,7 +1,6 @@
 package com.example.snickersdevops.services;
 
-import com.example.snickersdevops.exсeptions.ResourceUnavailableException;
-import com.example.snickersdevops.exсeptions.UnauthorizedActionException;
+import com.example.snickersdevops.exсeptions.*;
 import com.example.snickersdevops.models.Answer;
 import com.example.snickersdevops.models.Question;
 import com.example.snickersdevops.models.Quiz;
