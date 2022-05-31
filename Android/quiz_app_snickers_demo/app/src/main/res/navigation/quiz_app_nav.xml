@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/quiz_app_nav"
+    app:startDestination="@id/startLoadingPage">
+
+    <fragment
+        android:id="@+id/startLoadingPage"
+        android:name="dts.apps.quiz_app_snickers.screens.StartLoadingPage"
+        android:label="StartLoadingPage"
+        tools:layout="@layout/fragment_start_loading"
+        >
+        <action
+            android:id="@+id/action_startLoadingPage_to_coursesPage"
+            app:destination="@id/coursesPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/chosenCoursePage"
+        android:name="dts.apps.quiz_app_snickers.screens.ChosenCoursePage"
+        android:label="fragment_chosen_course_page"
+        tools:layout="@layout/fragment_chosen_course_page" >
+        <action
+            android:id="@+id/action_chosenCoursePage_to_quizPlayPage"
+            app:destination="@id/quizPlayPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/coursesPage"
+        android:name="dts.apps.quiz_app_snickers.screens.CoursesPage"
+        android:label="fragment_courses_page"
+        tools:layout="@layout/fragment_courses_page" >
+        <action
+            android:id="@+id/action_coursesPage_to_chosenCoursePage"
+            app:destination="@id/chosenCoursePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizPlayPage"
+        android:name="dts.apps.quiz_app_snickers.screens.QuizPlayPage"
+        android:label="fragment_quiz_play_page"
+        tools:layout="@layout/fragment_quiz_play_page" >
+        <action
+            android:id="@+id/action_quizPlayPage_to_resultPage"
+            app:destination="@id/resultPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultPage"
+        android:name="dts.apps.quiz_app_snickers.screens.ResultPage"
+        android:label="fragment_result_page"
+        tools:layout="@layout/fragment_result_page" >
+        <action
+            android:id="@+id/action_resultPage_to_startLoadingPage"
+            app:destination="@id/startLoadingPage" />
+        <action
+            android:id="@+id/action_resultPage_to_coursesPage"
+            app:destination="@id/coursesPage" />
+    </fragment>
+</navigation>
